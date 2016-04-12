@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class ControlCenter : MonoBehaviour
+
 {
+    
     // Use this for initialization
     //Sets Vector2 direction to equal right
     Vector2 d = Vector2.right;
@@ -13,6 +15,8 @@ public class ControlCenter : MonoBehaviour
     bool obtain = false;
 
     public GameObject FollowerPrefab;
+
+    public GameObject TBorder;
     //Stores the last position of the follower into a list.
     List<Transform> Follower = new List<Transform>();
 
@@ -21,6 +25,8 @@ public class ControlCenter : MonoBehaviour
         //Repeats this every repeatRate seconds, creates the feel of the object movbin
         InvokeRepeating("Navigate", 0.3f, 0.4f);
         //Navigate();
+
+       
 
     }
 
@@ -48,15 +54,16 @@ public class ControlCenter : MonoBehaviour
         //Checks to see if Leader collides with Follower
         if (coll.name.StartsWith("Mob"))
             Destroy(coll.gameObject); 
-        //When the leader collides he obtains a follower.
-
-
-        else if (coll.name.StartsWith("TBorder"))
-        {
-            //Application.Quit;
-        }
-        //
         
+        //When the leader collides he obtains a follower.
+        
+    }
+    void OnCollisionEnter (Collision col)
+    {
+        if(col.gameObject.name == "TBorder")
+        {
+           
+        }
     }
 
 
