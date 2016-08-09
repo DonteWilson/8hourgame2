@@ -32,7 +32,8 @@ public class ControlCenter : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        //if user hits the left arrow key he is move into the left position
         if (Input.GetKey(KeyCode.LeftArrow))
             d = -Vector2.right;
         //Moves the leader is the right position
@@ -58,6 +59,7 @@ public class ControlCenter : MonoBehaviour
         //When the leader collides he obtains a follower.
         
     }
+    //function is unused 
     void OnCollisionEnter (Collision col)
     {
         if(col.gameObject.name == "TBorder")
@@ -71,6 +73,7 @@ public class ControlCenter : MonoBehaviour
     //Navigate function to represe
     void Navigate()
     {
+        
         Vector2 v = transform.position;
         transform.Translate(d);
         if (obtain)
@@ -78,13 +81,14 @@ public class ControlCenter : MonoBehaviour
             GameObject GO = (GameObject)Instantiate(FollowerPrefab, v, Quaternion.identity);
 
             Follower.Insert(0, GO.transform);
-
+            //sets obtain false
             obtain = false;
         }
+        //checks to see if follower count is greater than 0
         else if (Follower.Count > 0)
         {
             Follower.Last().position = v;
-
+            //Inserts the follower into the lasr position of the main player object.
             Follower.Insert(0, Follower.Last());
             Follower.RemoveAt(Follower.Count - 1);
         }
